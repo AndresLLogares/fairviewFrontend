@@ -2,7 +2,7 @@ import React from "react";
 import WrapWithProvider from "./src/redux/wrap-with-provider";
 import { ChainId, DAppProvider } from "@usedapp/core";
 import { Provider } from "react-redux";
-import store from "../fairview/src/redux/store.js";
+import store from "./src/redux/store.js";
 const config = {
   readOnlyChainId: ChainId.Mainnet,
   readOnlyUrls: {

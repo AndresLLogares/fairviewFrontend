@@ -2,7 +2,7 @@ import axios from "axios";
 import { OpenSeaPort, Network } from "opensea-js";
 import { OrderSide, WyvernSchemaName } from "opensea-js/lib/types";
 
-export let urlBackend = "http://localhost:8080/";
+export let urlBackend = "https://fairviewbackend.herokuapp.com/";
 
 export const GET_COLLECTIONS = "GETCOLLECTIONS";
 
