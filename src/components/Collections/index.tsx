@@ -191,7 +191,7 @@ export default function LandPage(props: any): JSX.Element {
                     style={{ textDecoration: "none" }}
                     target="_blank"
                     rel="noreferrer"
-                    href={`http://localhost:8000/single?assets=${collection.asset_contract.address}&id=${collection.token_id}`}
+                    href={`https://fairviewgallery.netlify.app/single?assets=${collection.asset_contract.address}&id=${collection.token_id}`}
                   >
                     See More
                   </a>

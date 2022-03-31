@@ -79,11 +79,11 @@ export default function NavBar(): JSX.Element {
 
   return (
     <React.Fragment>
-      <AppBar
-        position="fixed"
+      <div
+   
         className={scrollNow === 0 ? classes.appBarTransparent : classes.appBar}
       >
-        <Toolbar className={classes.toolBar}>
+        <div className={classes.toolBar}>
           {animation ? (
             <div className={animation ? classes.root : classes.rootHidden}>
               <div className={classes.divButton}>
@@ -221,8 +221,8 @@ export default function NavBar(): JSX.Element {
               )}
             </div>
           ) : null}
-        </Toolbar>
-      </AppBar>
+        </div>
+      </div>
     </React.Fragment>
   );
 }
@@ -232,7 +232,10 @@ const useStyles = makeStyles({
     display: "flex",
     backgroundColor: `transparent !important`,
     height: "7rem",
+    position: "fixed",
     width: "100%",
+    top: 0,
+    left: 0,
     alignItems: "center",
     justifyContent: "center",
     backgroundPosition: "center",
@@ -244,9 +247,12 @@ const useStyles = makeStyles({
   },
   appBar: {
     display: "flex",
+    position: "fixed",
     backgroundColor: `${colors.Pink} !important`,
     height: "7rem",
     width: "100%",
+    top: 0,
+    left: 0,
     alignItems: "center",
     justifyContent: "center",
     backgroundPosition: "center",
@@ -260,6 +266,10 @@ const useStyles = makeStyles({
     width: "4rem",
     height: "4rem",
     marginRight: "1rem",
+    "@media (max-width: 1280px)": {
+      width: "3rem",
+      height: "3rem",
+    },
   },
   textLogo: {
     display: "flex",
@@ -267,6 +277,9 @@ const useStyles = makeStyles({
     fontFamily: ["AudioWide"].join(","),
     fontSize: "3vh",
     color: colors.Black,
+    "@media (max-width: 1280px)": {
+      fontSize: "2vh",
+    },
   },
   toolBar: {
     display: "flex",

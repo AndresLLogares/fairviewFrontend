@@ -65,7 +65,7 @@ export default function Favorites(props: any): JSX.Element {
                   style={{ textDecoration: "none" }}
                   target="_blank"
                   rel="noreferrer"
-                  href={`http://localhost:8000/single?assets=${item.addressNFT}&id=${item.idNFT}`}
+                  href={`https://fairviewgallery.netlify.app/single?assets=${item.addressNFT}&id=${item.idNFT}`}
                 >
                   See More
                 </a>

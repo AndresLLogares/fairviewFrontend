@@ -18,8 +18,8 @@ export default function AboutUs(props: any): JSX.Element {
   const classes = useStyles();
 
   return (
-    <div className={classes.root}>
-      <Reveal className={classes.reveal} keyframes={customAnimation}>
+    <Reveal className={classes.reveal} keyframes={customAnimation}>
+      <div className={classes.root}>
         <div className={classes.footer}>
           <a
             className={classes.links}
@@ -40,8 +40,8 @@ export default function AboutUs(props: any): JSX.Element {
             Open Sea API
           </a>
         </div>
-      </Reveal>
-    </div>
+      </div>
+    </Reveal>
   );
 }
 
