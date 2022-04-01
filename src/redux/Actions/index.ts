@@ -69,7 +69,7 @@ export const MAKEOFFER = (
         accountAddress: accountWallet,
         startAmount: value,
       });
-      console.log(offer, 'HERE');
+      console.log(offer, "HERE");
       dispatch({ type: MAKE_OFFER, payload: offer });
     } catch (e) {
       console.error(e);
@@ -105,27 +105,33 @@ export const BUYNOW = (
 };
 
 export const SETWALLET = (wallet: string, balance: any) => {
-  return (dispatch: (arg0: { type: string; payload: any }) => void) => {
-    localStorage.setItem("connect", "true");
-    localStorage.setItem("wallet", wallet);
-    localStorage.setItem("balance", balance);
+  return  (dispatch: (arg0: { type: string; payload: any }) => void) => {
+     localStorage.setItem("connect", "true");
+     localStorage.setItem("wallet", wallet);
+     localStorage.setItem("balance", balance);
     dispatch({ type: SET_WALLET, payload: wallet });
   };
 };
 
 export const GETWALLET = () => {
-  return (dispatch: (arg0: { type: string; payload: any }) => void) => {
-    const wallet = localStorage.getItem("wallet") || "";
-    const balance = localStorage.getItem("balance") || "";
+  return async (dispatch: (arg0: { type: string; payload: any }) => void) => {
+    const wallet =  localStorage.getItem("wallet") || "";
+    const balance =  localStorage.getItem("balance") || "";
     let data = { wallet: wallet, balance: balance };
     dispatch({ type: GET_WALLET, payload: data });
   };
 };
 
 export const LOGOUT = () => {
-  return (dispatch: (arg0: { type: string }) => void) => {
-    localStorage.removeItem("connect");
-    localStorage.removeItem("wallet");
+  return async (dispatch: (arg0: { type: string }) => void) => {
+    await localStorage.removeItem("connect");
+    await localStorage.removeItem("wallet");
+    await localStorage.removeItem("balance");
+    if (localStorage.getItem("connect") && localStorage.getItem("wallet")) {
+      await localStorage.removeItem("connect");
+      await localStorage.removeItem("wallet");
+      await localStorage.removeItem("balance");
+    }
     dispatch({ type: LOG_OUT });
   };
 };

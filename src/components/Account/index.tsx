@@ -114,8 +114,9 @@ export default function Account(props: any): JSX.Element {
   const handleLogout = async () => {
     await deactivate();
     await dispatch(LOGOUT());
+    await dispatch(GETWALLET());
     if (isBrowser) {
-      window.location.reload();
+      window.location.href = "/";
     }
   };
 
