@@ -71,7 +71,9 @@ export default function NavBar(): JSX.Element {
 
   const handleConnect = async () => {
     if (width <= 1280) {
-      toast.error("Please use a desktop device to connect to the wallet");
+      return toast.error(
+        "Please use a desktop device to connect to the wallet"
+      );
     }
     await activateBrowserWallet();
     toast.success("Connected to Metamask");
