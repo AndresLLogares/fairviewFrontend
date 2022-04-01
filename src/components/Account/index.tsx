@@ -15,6 +15,7 @@ import {
 import axios from "axios";
 import toast from "react-hot-toast";
 import Favorite from "./Favorites";
+import { useEthers } from "@usedapp/core";
 
 const customAnimation = keyframes`
   from {
@@ -28,6 +29,8 @@ const customAnimation = keyframes`
 
 export default function Account(props: any): JSX.Element {
   const isBrowser = typeof window !== "undefined";
+
+  const { deactivate } = useEthers();
 
   const [information, setInformation] = useState({
     name: "",
@@ -109,6 +112,7 @@ export default function Account(props: any): JSX.Element {
   };
 
   const handleLogout = async () => {
+    await deactivate();
     await dispatch(LOGOUT());
     if (isBrowser) {
       window.location.reload();

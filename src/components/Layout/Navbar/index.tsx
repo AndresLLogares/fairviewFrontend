@@ -11,7 +11,6 @@ import { useEthers, useEtherBalance } from "@usedapp/core";
 import { ADDUSER, GETWALLET, SETWALLET } from "../../../redux/Actions";
 import scroll from "../../../utils/scroll";
 import toast from "react-hot-toast";
-import { Box } from "@mui/system";
 
 import { Link } from "gatsby";
 
@@ -46,22 +45,25 @@ export default function NavBar(): JSX.Element {
   const balance = useEtherBalance(wallet.wallet) || 0;
 
   useEffect(() => {
-    const getCurrentAccount = async () => {
-      if (account) {
-        await dispatch(SETWALLET(account, balance));
-        await dispatch(ADDUSER(account));
-      }
-    };
     const getBalance = async () => {
       if (balance) {
         await dispatch(SETWALLET(wallet.wallet, balance));
         await dispatch(ADDUSER(wallet.wallet));
       }
     };
-    getCurrentAccount();
     getBalance();
     dispatch(GETWALLET());
-  }, [account, balance, dispatch, wallet.wallet]);
+  }, [account, balance, wallet.wallet]);
+
+  useEffect(() => {
+    const getCurrentAccount = async () => {
+      if (account) {
+        await dispatch(SETWALLET(account, balance));
+        await dispatch(ADDUSER(account));
+      }
+    };
+    getCurrentAccount();
+  }, [account]);
 
   const handlePopup = () => {
     setAnimation(!animation);
@@ -81,7 +83,6 @@ export default function NavBar(): JSX.Element {
   return (
     <React.Fragment>
       <div
-   
         className={scrollNow === 0 ? classes.appBarTransparent : classes.appBar}
       >
         <div className={classes.toolBar}>
@@ -126,7 +127,7 @@ export default function NavBar(): JSX.Element {
           ) : null}
           <div className={classes.divLogo}>
             <button className={classes.divFix}>
-            <img src={Logo} alt="logo" className={classes.logo} />
+              <img src={Logo} alt="logo" className={classes.logo} />
             </button>
             <p className={classes.textLogo}>FairView</p>
           </div>
@@ -147,7 +148,7 @@ export default function NavBar(): JSX.Element {
                 >
                   <button className={classes.buttons}>about us</button>
                 </Link>
-                {wallet?.wallet?.length !== 0 ? (
+                {wallet?.wallet ? (
                   <Link
                     className={classes.links}
                     to="/account"
@@ -203,7 +204,7 @@ export default function NavBar(): JSX.Element {
               >
                 <button className={classes.buttons}>about us</button>
               </Link>
-              {wallet?.wallet?.length !== 0 ? (
+              {wallet?.wallet ? (
                 <Link
                   className={classes.links}
                   to="/account"
@@ -314,11 +315,11 @@ const useStyles = makeStyles({
     width: "2.5rem",
   },
   iconNavbarClose: {
-    width: "5rem",
+    width: "3rem",
   },
   buttonResponsive: {
-    width: "5rem",
-    height: "10vh",
+    width: "4rem",
+    height: "8vh",
     marginLeft: "0.5rem",
     marginRight: "0.5rem",
     backgroundColor: "transparent",
@@ -451,6 +452,11 @@ const useStyles = makeStyles({
     animation: `$bounceInLeft 1s`,
     top: "20%",
     left: "20%",
+    "@media (max-width: 1280px)": {
+      top: "5%",
+      left: "5%",
+      width: "90%",
+    },
   },
   rootHidden: {
     display: "flex",
