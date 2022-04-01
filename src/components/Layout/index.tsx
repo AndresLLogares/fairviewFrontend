@@ -3,18 +3,19 @@ import { makeStyles } from "@mui/styles";
 import { Toaster } from "react-hot-toast";
 import NavBar from "./Navbar";
 import Footer from "./Footer";
+import { Box } from "@mui/system";
 import "./global.css";
 
 export default function Layout(props: any): JSX.Element {
   const classes = useStyles();
 
   return (
-    <div className={classes.root}>
+    <Box className={classes.root}>
       <NavBar />
       <Toaster />
       {props.children}
       <Footer />
-    </div>
+    </Box>
   );
 }
 const useStyles = makeStyles({
