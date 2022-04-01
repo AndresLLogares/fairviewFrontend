@@ -13,13 +13,13 @@ This is a small website created using the opensea API, although it is a small si
 - ![Redux](https://img.shields.io/badge/-Redux.js-blue)  
 - ![Gatsby](https://img.shields.io/badge/-Gatsby.js-green)  
 
-# You can visit the site here: 
+**You can visit the site here:**
 
 -🔗: https://fairviewgallery.netlify.app/
 
 **Español**
 
-**Este es un pequeño sitio web creado utilizando la API de opensea, si bien es un sitio pequeño con solo algunos artes cargados, el mismo es completamente funcional y se pueden realizar transacciones a traves del mismo. Espero lo disfruten
+Este es un pequeño sitio web creado utilizando la API de opensea, si bien es un sitio pequeño con solo algunos artes cargados, el mismo es completamente funcional y se pueden realizar transacciones a traves del mismo. Espero lo disfruten
 
 #Teconologías
 
@@ -30,6 +30,6 @@ This is a small website created using the opensea API, although it is a small si
 - ![Redux](https://img.shields.io/badge/-Redux.js-blue)  
 - ![Gatsby](https://img.shields.io/badge/-Gatsby.js-green)  
 
-# Puedes visitar el sitio aquí: 
+**Puedes visitar el sitio aquí:** 
 
 -🔗: https://fairviewgallery.netlify.app/
