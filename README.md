@@ -4,7 +4,7 @@
 
 This is a small website created using the opensea API, although it is a small site with only a few arts loaded, it is fully functional and you can make transactions through it. I hope you enjoy it
 
-#Technologies
+**Technologies**
 
 - ![React](https://img.shields.io/badge/-React.js-blue)  
 - ![Typescript](https://img.shields.io/badge/-Javascript-yellow)
@@ -21,7 +21,7 @@ This is a small website created using the opensea API, although it is a small si
 
 Este es un pequeño sitio web creado utilizando la API de opensea, si bien es un sitio pequeño con solo algunos artes cargados, el mismo es completamente funcional y se pueden realizar transacciones a traves del mismo. Espero lo disfruten
 
-#Teconologías
+**Teconologías**
 
 - ![React](https://img.shields.io/badge/-React.js-blue)  
 - ![Typescript](https://img.shields.io/badge/-Javascript-yellow)
