@@ -124,7 +124,9 @@ export default function NavBar(): JSX.Element {
             </div>
           ) : null}
           <div className={classes.divLogo}>
+            <div className={classes.divFix}>
             <img src={Logo} alt="logo" className={classes.logo} />
+            </div>
             <p className={classes.textLogo}>FairView</p>
           </div>
           <div className={classes.divLinks}>
@@ -262,7 +264,7 @@ const useStyles = makeStyles({
     transition: "background-color 1s ease",
     zIndex: 5,
   },
-  logo: {
+  divFix: {
     width: "4rem",
     height: "4rem",
     marginRight: "1rem",
@@ -270,6 +272,10 @@ const useStyles = makeStyles({
       width: "3rem",
       height: "3rem",
     },
+  },
+  logo: {
+    width: "100%",
+    height: "100%",
   },
   textLogo: {
     display: "flex",

@@ -18,30 +18,32 @@ export default function AboutUs(props: any): JSX.Element {
   const classes = useStyles();
 
   return (
-    <Reveal className={classes.reveal} keyframes={customAnimation}>
-      <div className={classes.root}>
-        <div className={classes.footer}>
-          <a
-            className={classes.links}
-            style={{ textDecoration: "none" }}
-            target="_blank"
-            rel="noreferrer"
-            href="http://creativecommons.org/licenses/by-nc-sa/4.0/"
-          >
-            © 2022 Andres Luis Logares. All rights reserved
-          </a>
-          <a
-            className={classes.links}
-            style={{ textDecoration: "none" }}
-            target="_blank"
-            rel="noreferrer"
-            href="https://docs.opensea.io/"
-          >
-            Open Sea API
-          </a>
+    <div className={classes.root}>
+      <Reveal className={classes.reveal} keyframes={customAnimation}>
+        <div className={classes.reveal}>
+          <div className={classes.footer}>
+            <a
+              className={classes.links}
+              style={{ textDecoration: "none" }}
+              target="_blank"
+              rel="noreferrer"
+              href="http://creativecommons.org/licenses/by-nc-sa/4.0/"
+            >
+              © 2022 Andres Luis Logares. All rights reserved
+            </a>
+            <a
+              className={classes.links}
+              style={{ textDecoration: "none" }}
+              target="_blank"
+              rel="noreferrer"
+              href="https://docs.opensea.io/"
+            >
+              Open Sea API
+            </a>
+          </div>
         </div>
-      </div>
-    </Reveal>
+      </Reveal>
+    </div>
   );
 }
 

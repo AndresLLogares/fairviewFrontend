@@ -1,7 +1,8 @@
 import React from "react";
 import { makeStyles } from "@mui/styles";
 import { Toaster } from "react-hot-toast";
-
+import NavBar from "./Navbar";
+import Footer from "./Footer";
 import "./global.css";
 
 export default function Layout(props: any): JSX.Element {
@@ -9,8 +10,10 @@ export default function Layout(props: any): JSX.Element {
 
   return (
     <div className={classes.root}>
+      <NavBar />
       <Toaster />
       {props.children}
+      <Footer />
     </div>
   );
 }
