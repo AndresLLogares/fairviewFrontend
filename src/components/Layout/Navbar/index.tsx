@@ -11,6 +11,7 @@ import { useEthers, useEtherBalance } from "@usedapp/core";
 import { ADDUSER, GETWALLET, SETWALLET } from "../../../redux/Actions";
 import scroll from "../../../utils/scroll";
 import toast from "react-hot-toast";
+import { Box } from "@mui/system";
 
 import { Link } from "gatsby";
 
@@ -124,9 +125,9 @@ export default function NavBar(): JSX.Element {
             </div>
           ) : null}
           <div className={classes.divLogo}>
-            <div className={classes.divFix}>
+            <button className={classes.divFix}>
             <img src={Logo} alt="logo" className={classes.logo} />
-            </div>
+            </button>
             <p className={classes.textLogo}>FairView</p>
           </div>
           <div className={classes.divLinks}>
@@ -268,14 +269,20 @@ const useStyles = makeStyles({
     width: "4rem",
     height: "4rem",
     marginRight: "1rem",
+    border: "transparent",
+    backgroundColor: "transparent",
     "@media (max-width: 1280px)": {
       width: "3rem",
       height: "3rem",
     },
   },
   logo: {
-    width: "100%",
-    height: "100%",
+    width: "4rem",
+    height: "4rem",
+    "@media (max-width: 1280px)": {
+      width: "3rem",
+      height: "3rem",
+    },
   },
   textLogo: {
     display: "flex",

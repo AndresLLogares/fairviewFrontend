@@ -3,7 +3,7 @@ import { colors } from "../../../utils/colors";
 import { makeStyles } from "@mui/styles";
 import Reveal from "react-awesome-reveal";
 import { keyframes } from "@emotion/react";
-
+import { Box } from "@mui/system";
 const customAnimation = keyframes`
   from {
     transform: rotateX(80deg);
@@ -18,7 +18,7 @@ export default function AboutUs(props: any): JSX.Element {
   const classes = useStyles();
 
   return (
-    <div className={classes.root}>
+    <Box className={classes.root}>
       <Reveal className={classes.reveal} keyframes={customAnimation}>
         <div className={classes.reveal}>
           <div className={classes.footer}>
@@ -43,7 +43,7 @@ export default function AboutUs(props: any): JSX.Element {
           </div>
         </div>
       </Reveal>
-    </div>
+    </Box>
   );
 }
 
