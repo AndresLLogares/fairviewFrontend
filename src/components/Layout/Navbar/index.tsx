@@ -240,7 +240,7 @@ const useStyles = makeStyles({
   appBarTransparent: {
     display: "flex",
     backgroundColor: `transparent !important`,
-    height: "7rem",
+    height: "5rem",
     position: "fixed",
     width: "100%",
     top: 0,
@@ -258,7 +258,7 @@ const useStyles = makeStyles({
     display: "flex",
     position: "fixed",
     backgroundColor: `${colors.Pink} !important`,
-    height: "7rem",
+    height: "5rem",
     width: "100%",
     top: 0,
     left: 0,
