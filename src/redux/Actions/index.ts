@@ -34,6 +34,8 @@ export const MAKE_OFFER = "MAKE_OFFER";
 
 const API_KEY = process.env.GATSBY_OPENSEA_API_KEY;
 
+console.log("API_KEY", API_KEY);
+
 const options = {
   method: "GET",
   headers: { Accept: "application/json", "X-API-KEY": API_KEY },

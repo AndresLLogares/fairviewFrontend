@@ -16,10 +16,10 @@
     "typecheck": "tsc --noEmit"
   },
   "dependencies": {
-    "@emotion/react": "^11.8.2",
+    "@emotion/react": "^11.9.0",
     "@emotion/styled": "^11.8.1",
     "@mui/material": "^5.5.1",
-    "@mui/styles": "^5.5.1",
+    "@mui/styles": "^5.8.3",
     "@usedapp/core": "^0.12.1",
     "api": "^4.2.1",
     "assert": "^2.0.0",
@@ -48,7 +48,7 @@
     "react-helmet": "^6.1.0",
     "react-hot-toast": "^2.2.0",
     "react-redux": "^7.2.6",
-    "redux": "^4.1.2",
+    "redux": "^4.2.0",
     "stream-browserify": "^3.0.0",
     "stream-http": "^3.2.0",
     "styled-icons": "^10.45.0",

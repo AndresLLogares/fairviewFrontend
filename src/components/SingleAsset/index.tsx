@@ -166,6 +166,8 @@ export default function LandPage(props: any): JSX.Element {
     toast.success("Offer sent");
   };
 
+  console.log("Offer sent",currentOffer);
+
   return (
     <div className={classes.root}>
       <div className={classes.header}>
@@ -253,7 +255,7 @@ export default function LandPage(props: any): JSX.Element {
                 currentOffer.map((item: any) => (
                   <div key={item.id} className={classes.divOffer}>
                     <p className={classes.descriptionOffer}>
-                      From: {item.from_account.user.username}
+                      From: {item.from_account?.user?.username || "anonymous"}
                     </p>
                     <p className={classes.descriptionOffer}>
                       Amount: <Ethereum className={classes.iconEthereum} />{" "}
