@@ -32,7 +32,7 @@ export const BUY_NOW = "BUY_NOW";
 
 export const MAKE_OFFER = "MAKE_OFFER";
 
-const API_KEY = process.env.GATSBY_OPENSEA_API_KEY;
+const API_KEY = process.env.GATSBY_OPENSEA_API_KEY || "";
 
 const options = {
   method: "GET",
