@@ -302,7 +302,7 @@ const useStyles = makeStyles({
     flexWrap: "wrap",
     "@media (max-width: 1280px)": {
       flexDirection: "column",
-     },
+    },
   },
   divCard: {
     display: "flex",
