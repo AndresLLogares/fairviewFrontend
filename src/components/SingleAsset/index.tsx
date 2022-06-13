@@ -1,4 +1,4 @@
-import React, { useEffect, useState, Fragment } from "react";
+import React, { useEffect, useState, Fragment, Suspense } from "react";
 import { colors } from "../../utils/colors";
 import { makeStyles } from "@mui/styles";
 import { useDispatch, useSelector } from "react-redux";
@@ -19,6 +19,7 @@ import { HeartBroken } from "@styled-icons/icomoon/HeartBroken";
 import { Ethereum } from "@styled-icons/fa-brands/Ethereum";
 import { useEthers } from "@usedapp/core";
 import { formatEther } from "@ethersproject/units";
+import Loading from "../Loading";
 
 export default function LandPage(props: any): JSX.Element {
   const isBrowser = typeof window !== "undefined";
@@ -166,168 +167,170 @@ export default function LandPage(props: any): JSX.Element {
     toast.success("Offer sent");
   };
 
-  console.log("Offer sent",currentOffer);
-
   return (
     <div className={classes.root}>
-      <div className={classes.header}>
-        <div className={classes.headerLeft}>
-          <img
-            className={classes.image}
-            src={singleAsset.image_url}
-            alt="assets"
-          />
-        </div>
-        <div className={classes.headerRight}>
-          <div className={classes.divButtonHeart}>
-            {user?.idFavorite?.includes(singleAsset.token_id) ? (
-              <button
-                onClick={() => handleRemoveFavorite(singleAsset.id)}
-                type="button"
-                className={classes.buttonHeart}
-              >
-                <Heart className={classes.iconHeart} />
-              </button>
-            ) : (
-              <button
-                onClick={() =>
-                  handleAddFavorite(
-                    singleAsset.asset_contract.address,
-                    singleAsset.name,
-                    singleAsset.image_url,
-                    singleAsset.token_id,
-                    singleAsset.description
-                  )
-                }
-                type="button"
-                className={classes.buttonHeart}
-              >
-                <HeartBroken className={classes.iconHeart} />
-              </button>
-            )}
+      {!singleAsset?.image_url ? (
+        <Loading />
+      ) : (
+        <div className={classes.header}>
+          <div className={classes.headerLeft}>
+            <img
+              className={classes.image}
+              src={singleAsset.image_url}
+              alt="assets"
+            />
           </div>
-          <h3 className={classes.title}>{singleAsset.name}</h3>
-          <p className={classes.description}>{singleAsset.description}</p>
-          <a
-            className={classes.descriptionLinks}
-            style={{ textDecoration: "none" }}
-            target="_blank"
-            rel="noreferrer"
-            href={`https://opensea.io/${singleAsset?.owner?.user?.username}`}
-          >
-            Owned by {singleAsset?.owner?.user?.username}
-          </a>
-          <a
-            className={classes.descriptionLinks}
-            style={{ textDecoration: "none" }}
-            target="_blank"
-            rel="noreferrer"
-            href={`https://opensea.io/collection/${singleAsset?.collection?.slug}`}
-          >
-            Collection {singleAsset?.collection?.name}
-          </a>
-          <a
-            className={classes.descriptionLinks}
-            style={{ textDecoration: "none" }}
-            target="_blank"
-            rel="noreferrer"
-            href={`https://opensea.io/${singleAsset?.creator?.user?.username}`}
-          >
-            Creator {singleAsset?.creator?.user?.username}
-          </a>
-          {isBuyNow ? (
-            <div className={classes.divPrice}>
-              <p className={classes.description}>
-                Price in Ethereum :{" "}
-                <Ethereum className={classes.iconEthereum} /> {currentPrice}
-              </p>
-              <p className={classes.description}>
-                Price in USD : {currentPriceUSD}
-              </p>
+          <div className={classes.headerRight}>
+            <div className={classes.divButtonHeart}>
+              {user?.idFavorite?.includes(singleAsset.token_id) ? (
+                <button
+                  onClick={() => handleRemoveFavorite(singleAsset.id)}
+                  type="button"
+                  className={classes.buttonHeart}
+                >
+                  <Heart className={classes.iconHeart} />
+                </button>
+              ) : (
+                <button
+                  onClick={() =>
+                    handleAddFavorite(
+                      singleAsset.asset_contract.address,
+                      singleAsset.name,
+                      singleAsset.image_url,
+                      singleAsset.token_id,
+                      singleAsset.description
+                    )
+                  }
+                  type="button"
+                  className={classes.buttonHeart}
+                >
+                  <HeartBroken className={classes.iconHeart} />
+                </button>
+              )}
             </div>
-          ) : null}
-          {hasOffer ? (
-            <div className={classes.divOffers}>
-              <p className={classes.description}>
-                This NFT has offers in the last 30 days
-              </p>
-              {currentOffer &&
-                currentOffer.map((item: any) => (
-                  <div key={item.id} className={classes.divOffer}>
-                    <p className={classes.descriptionOffer}>
-                      From: {item.from_account?.user?.username || "anonymous"}
-                    </p>
-                    <p className={classes.descriptionOffer}>
-                      Amount: <Ethereum className={classes.iconEthereum} />{" "}
-                      {toETH(item.bid_amount)}
-                    </p>
-                  </div>
-                ))}
-            </div>
-          ) : null}
-          <div className={classes.divOffers}>
-            <p className={classes.description}>Your information</p>
-            <div className={classes.divOffer}>
-              <p className={classes.descriptionOffer}>
-                Wallet: {wallet.wallet}
-              </p>
-              <p className={classes.descriptionOffer}>
-                Balance: <Ethereum className={classes.iconEthereum} />{" "}
-                {wallet.balance && formatEther(wallet.balance).slice(0, 6)}
-              </p>
-            </div>
-          </div>
-          <div className={classes.divButtons}>
-            {isBuyNow ? (
-              <Fragment>
-                {wallet.balance &&
-                formatEther(wallet.balance) < currentPrice ? (
-                  <button
-                    type="button"
-                    onClick={() => toast.error("Not enough ETH")}
-                    className={classes.buttonDisabled}
-                  >
-                    BUY NOW
-                  </button>
-                ) : (
-                  <button
-                    onClick={handleBuyNow}
-                    type="button"
-                    className={classes.button}
-                  >
-                    BUY NOW
-                  </button>
-                )}
-              </Fragment>
-            ) : null}
-            <button
-              type="button"
-              onClick={() => setShowInput(!showInput)}
-              className={classes.button}
+            <h3 className={classes.title}>{singleAsset.name}</h3>
+            <p className={classes.description}>{singleAsset.description}</p>
+            <a
+              className={classes.descriptionLinks}
+              style={{ textDecoration: "none" }}
+              target="_blank"
+              rel="noreferrer"
+              href={`https://opensea.io/${singleAsset?.owner?.user?.username}`}
             >
-              MAKE AN OFFER
-            </button>
-          </div>
-          {showInput ? (
-            <div className={classes.divInput}>
-              <input
-                type="number"
-                className={classes.input}
-                placeholder="Enter the amount in ETH"
-                value={valueOffer}
-                onChange={(e) => setValueOffer(e.target.value)}
-              />
+              Owned by {singleAsset?.owner?.user?.username}
+            </a>
+            <a
+              className={classes.descriptionLinks}
+              style={{ textDecoration: "none" }}
+              target="_blank"
+              rel="noreferrer"
+              href={`https://opensea.io/collection/${singleAsset?.collection?.slug}`}
+            >
+              Collection {singleAsset?.collection?.name}
+            </a>
+            <a
+              className={classes.descriptionLinks}
+              style={{ textDecoration: "none" }}
+              target="_blank"
+              rel="noreferrer"
+              href={`https://opensea.io/${singleAsset?.creator?.user?.username}`}
+            >
+              Creator {singleAsset?.creator?.user?.username}
+            </a>
+            {isBuyNow ? (
+              <div className={classes.divPrice}>
+                <p className={classes.description}>
+                  Price in Ethereum :{" "}
+                  <Ethereum className={classes.iconEthereum} /> {currentPrice}
+                </p>
+                <p className={classes.description}>
+                  Price in USD : {currentPriceUSD}
+                </p>
+              </div>
+            ) : null}
+            {hasOffer ? (
+              <div className={classes.divOffers}>
+                <p className={classes.description}>
+                  This NFT has offers in the last 30 days
+                </p>
+                {currentOffer &&
+                  currentOffer.map((item: any) => (
+                    <div key={item.id} className={classes.divOffer}>
+                      <p className={classes.descriptionOffer}>
+                        From: {item.from_account?.user?.username || "anonymous"}
+                      </p>
+                      <p className={classes.descriptionOffer}>
+                        Amount: <Ethereum className={classes.iconEthereum} />{" "}
+                        {toETH(item.bid_amount)}
+                      </p>
+                    </div>
+                  ))}
+              </div>
+            ) : null}
+            <div className={classes.divOffers}>
+              <p className={classes.description}>Your information</p>
+              <div className={classes.divOffer}>
+                <p className={classes.descriptionOffer}>
+                  Wallet: {wallet.wallet}
+                </p>
+                <p className={classes.descriptionOffer}>
+                  Balance: <Ethereum className={classes.iconEthereum} />{" "}
+                  {wallet.balance && formatEther(wallet.balance).slice(0, 6)}
+                </p>
+              </div>
+            </div>
+            <div className={classes.divButtons}>
+              {isBuyNow ? (
+                <Fragment>
+                  {wallet.balance &&
+                  formatEther(wallet.balance) < currentPrice ? (
+                    <button
+                      type="button"
+                      onClick={() => toast.error("Not enough ETH")}
+                      className={classes.buttonDisabled}
+                    >
+                      BUY NOW
+                    </button>
+                  ) : (
+                    <button
+                      onClick={handleBuyNow}
+                      type="button"
+                      className={classes.button}
+                    >
+                      BUY NOW
+                    </button>
+                  )}
+                </Fragment>
+              ) : null}
               <button
-                onClick={handleMakeOffer}
                 type="button"
+                onClick={() => setShowInput(!showInput)}
                 className={classes.button}
               >
-                OFFER
+                MAKE AN OFFER
               </button>
             </div>
-          ) : null}
+            {showInput ? (
+              <div className={classes.divInput}>
+                <input
+                  type="number"
+                  className={classes.input}
+                  placeholder="Enter the amount in ETH"
+                  value={valueOffer}
+                  onChange={(e) => setValueOffer(e.target.value)}
+                />
+                <button
+                  onClick={handleMakeOffer}
+                  type="button"
+                  className={classes.button}
+                >
+                  OFFER
+                </button>
+              </div>
+            ) : null}
+          </div>
         </div>
-      </div>
+      )}
     </div>
   );
 }
